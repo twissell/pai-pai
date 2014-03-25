@@ -1,0 +1,255 @@
+/*
+one line to give the program's name and a brief description
+Copyright (C) 2014 copyright holder
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+https://github.com/twissell
+
+Copyright © 2014 twissell. All Rights Reserved. 
+*/
+
+/*
+   determines if classes will be
+   inside media queries or not.
+
+   @values true, false
+ */
+$inside-media = true
+
+/*
+   determines if classes will be
+   OUTSIDE media queries or not.
+
+   @values true, false
+ */
+$outside-media = true
+
+/*
+   determines which selector will be used
+   for all classes.
+
+   @values class, placeholder
+ */
+$selector-type = placeholder
+
+/*
+   choose a strategy to fight the inline 
+   block gap, set it to null if you want 
+   to use a html solution.
+   
+   @values font-no-space, font-size-0, null
+ */
+$inline-block-gap = font-no-space
+
+/*
+   set this with your default base font 
+   family if you choose the font-no-space
+   strategy for inline-block-gap.
+ */
+$base-font-family = serif
+
+/*
+   set this with your base font size if
+   you choose the font-size-0 strategy
+   for the inline-block-gap.
+ */
+$base-font-size = 16px
+
+/*
+  define here whatever sizes you want
+  to have.
+ */
+$custom-sizes = {
+  //'960': 960px
+}
+
+/*
+  sizes classes as portions, uncomment
+  whatever size you want use.
+ */
+$default-sizes = {
+  '1of1': 100%, 
+  //'1of2': 50%, 
+  //'2of2': 100%,
+  //'1of3': 33.333%, 
+  //'2of3': 66.666%,
+  //'3of3': 100%,
+  //'1of4': 25%,
+  //'2of4': 50%,
+  //'3of4': 75%,
+  //'4of4': 100%,
+  //'1of5': 20%,
+  //'2of5': 40%,
+  //'3of5': 60%,
+  //'4of5': 80%,
+  //'5of5': 100%
+}
+
+/*
+   define your custom breakpoints
+   here.
+ */
+$custom-bps = { 
+  //palm: 'only screen and (min-width: 30em)'
+}
+
+/*
+  web developer breakpoints, uncomment whatever
+  you want to use.
+ */
+$default-bps = {	
+  mb-p: 'only screen and (min-width: 320px)', 
+  //mb-l: 'only screen and (min-width: 480px)', 
+  //st-p: 'only screen and (min-width: 600px)', 
+  //st-l: 'only screen and (min-width: 800px)', 
+  //t-l:  'only screen and (min-width: 1024px)'
+}
+
+/****************************************
+ *                                        
+ * DO NOT EDIT ANYTHING BELOW HERE. 
+ *	 
+ ****************************************/
+ 
+$sizes = merge($default-sizes, $custom-sizes)
+$bps = merge($default-bps, $custom-bps)
+
+/*
+   loads the no space font.
+ */
+@font-face
+  font-family: 'no space'
+  src: url('font/no_space.eot');
+  src: url('font/no_space.eot?#iefix') format('embedded-opentype'), 
+       url('font/no_space.woff') format('woff'),
+       url('font/no_space.ttf') format('truetype'),
+       url('font/no_space.svg#NoSpace') format('svg');
+
+/*
+  provides a hook inside media 
+  querie rules.
+ */
+at-bp(bp-name)
+  declaration = $bps[bp-name]
+  @media declaration
+    {block}
+    
+if $selector-type == class
+  $sel = unquote('.')
+else if $selector-type == placeholder
+  $sel = unquote('$')
+else
+  error('$selector-type must be class or placeholder was ' + $selector-type)
+  
+/*
+   base class for all elements.
+ */	
+{$sel}p
+  box-sizing: border-box
+  display: inline-block
+  vertical-align: top
+  text-align: left
+
+  if $inline-block-gap == font-no-space
+    font-family: 'no space'
+    > *
+      font-family: $base-font-family
+  if $inline-block-gap == font-size-0
+    font-size: 0
+    > *
+      font-size: $base-font-size
+
+/*
+   creates all classes used by pai-pai
+   with the specified selector-type
+   and breakpoints.
+ */
+build(prefix='')
+
+  for size-name, size-width in $sizes
+    {$sel + prefix + 'p--' + size-name} 
+      width: size-width
+
+    {$sel + prefix + 'pp--' + size-name}	
+      > *
+        width: size-width
+
+    {$sel +  prefix + 'p-push--' + size-name}
+      margin-right: size-width
+      
+    {$sel + prefix + 'p-pull--' + size-name}
+        margin-right: (- size-width)
+
+  {$sel + prefix}pp--reverse
+    text-direction: rtl
+    > *
+      text-direction: ltr
+
+  {$sel + prefix}pp--left
+    text-align: left
+
+  {$sel + prefix}pp--right
+    text-align: right
+
+  {$sel + prefix}pp--center
+    text-align: center
+
+  {$sel + prefix}pp--justify
+    text-align: justify
+   
+    &:after
+      content: ""
+      width: 100%
+      display: inline-block
+
+  {$sel + prefix}pp--top
+    > *
+      vertical-align: top
+
+  {$sel + prefix}pp--middle
+    > *
+      vertical-align: middle
+
+  {$sel +  prefix}pp--bottom
+    > *
+      vertical-align: bottom
+
+  {$sel + prefix}pp--strecth
+    overflow: hidden
+    > *
+      margin-bottom: 999999px
+      padding-bottom: -999999p
+
+  {$sel + prefix}p--top
+    vertical-align: top
+
+  {$sel + prefix}p--middle
+    vertical-align: middle
+
+  {$sel + prefix}p--bottom
+    vertical-align: bottom
+
+if $outside-media 
+  build()
+
+if $inside-media
+  for bp-name in $bps
+    +at-bp(bp-name)
+      build(prefix='at-' + bp-name + '-')
