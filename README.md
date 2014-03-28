@@ -20,11 +20,9 @@ Pai Pai is really simple to use, all classes are prefixed with p or pp, where p 
 ### Core classes
 
 .p
-
-'''
+```
 <div class=".p"></div>
-'''
-
+```
 use .p to make your html element a grid.
 
 
@@ -32,69 +30,69 @@ use .p to make your html element a grid.
 
 .p--top
 
-'''
+```
 <div class=".p .p--top"></div>
-'''
+```
 
 aligns the element to the top in the y axis.
 
 .p--middle
 
-'''
+```
 <div class=".p .p--middle"></div>
-'''
+```
 
 aligns the element to the middle in the y axis.
 
 .p--bottom
 
-'''
+```
 <div class=".p .p--bottom"></div>
-'''
+```
 
 aligns the element to the bottom in the y axis.
 
 .pp--top
 
-'''
+```
 <div class=".p .pp--top">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the top in the y axis, this is the default behaviour.
 
 .pp--middle
 
-'''
+```
 <div class=".p .pp--middle">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the middle in the y axis.
 
 .pp--bottom
 
-'''
+```
 <div class=".p .pp--bottom">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the bottom in the y axis.
 
 .pp--strecth
 
-'''
+```
 <div class=".p .pp--strecth">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 item-1 and item-2 will have the same height. (one true layout method)
 
@@ -103,45 +101,45 @@ item-1 and item-2 will have the same height. (one true layout method)
 
 .pp--left
 
-'''
+```
 <div class=".p .pp--left">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the left in the x axis
 
 .pp--right
 
-'''
+```
 <div class=".p .pp--right">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the right in the x axis
 
 .pp--center
 
-'''
+```
 <div class=".p .pp--center">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 aligns item-1 and item-2 to the center in the x axis
 
 .pp--justify
 
-'''
+```
 <div class=".p .pp--justify">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 justify item-1 and item-2 in the x axis
 
@@ -150,12 +148,12 @@ justify item-1 and item-2 in the x axis
 
 .pp--reverse
 
-'''
+```
 <div class=".p .pp--reverse">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 changes the order from item-1 and item-2 to item-2 and item-1
 
@@ -165,20 +163,20 @@ Pai Pai comes with default sizes as portions in the form of 1of2 indicating 50%,
 
 .p--1of2
 
-'''
+```
 <div class=".p .p--1of2"></div>
-'''
+```
 
 div will have a width of 50%.
 
 .pp--1of2
 
-'''
+```
 <div class=".p .pp--1of2">
   <div class=".p item-1"></div>
   <div class=".p item-2"></div>
 </div>
-'''
+```
 
 item-1 and item-2 will both have a width of 50%.
 
@@ -188,17 +186,17 @@ You can use push and pull classes to align items in other way than the align cla
 
 .p-push-1of-2
 
-'''
+```
 <div class=".p .p-push-1of2"></div>
-'''
+```
 
 moves the div 50% to the left.
 
 .p-pull-1of-2
 
-'''
+```
 <div class=".p .p-pull-1of2"></div>
-'''
+```
 
 moves the div 50% to the right.
 
@@ -208,9 +206,9 @@ Pai Pai comes with a default collection of breakpoints for the most common devis
 
 .p-at-mb-p--2of3
 
-'''
+```
 <div class=".p .p-at-mb-p--2of-3"></div>
-'''
+```
 
 where at-mb-p (mobile portrait) is your breakpoint, the div element will change its size to 66.666% when the breakpoint triggers.
 
